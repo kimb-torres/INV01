@@ -11,18 +11,23 @@
   Luego asigna proyectos que se dividen en entregables y subtareas, y necesita calcular las horas de trabajo pendientes de una tarea a partir de todos sus descendientes.
   
 # Estructuras Seleccionadas
-Tipo         |
+Tipo         |                                       Representación Tarea-Subtarea
 ------------------------------------------------------------------------------------------------------
-             | Lista simplemente
-Lineal       | enlazada
-             | Lista.h y Nodo.h
-             |
----------------------------------------------------------------------------------------------------
-             |
-Jerárquica   |
-             |
-             |
+             Lista simplemente enlazada               Cada Tarea guarda el Id de su padre.           
+             Lista.h y Nodo.h                         No hay enlaces entre padres y hijos
+Lineal       
+             
+-----------------------------------------------------------------------------------------------------
+             Árbol n-arios con representación         Cada nodo tiene enlaces al primerHijo
+             primerHijo y siguienteHermano            al siguienteHermano y al padre.
+             Arbol.h y NodoArbol.h                    Una Raiz ficticia que posee un Id 0 agrupa
+                                                      las tareas sueltas
+Jerárquica             
+             
 ----------------------------------------------------------------------------------------------------
+Las estructuras son adaptadas del proyecto PY2 del curso desarrolladas por mi persona Kimberly Torres
+
+# Inventario de archivos
 
 # Instrucciones de Ejecucción
 
