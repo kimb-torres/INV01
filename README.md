@@ -160,6 +160,6 @@ Modelo: 4 Argon
    Consulta: opción `-std=c++11` de g++
    Parte afectada: compilación
    
-5. Corrección de errores ortográficos y aplicación de formato APA7 a links
+5. Corrección de errores ortográficos y aplicación de formato APA7 al texto y links
 
 Las estructuras, cargas, conteos, fuentes, código, resultados y redacción fueron realizados por el grupo sin IA.+
