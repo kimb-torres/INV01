@@ -4,11 +4,13 @@
 
 # Tema
   *Tareas y Subtareas*
-  Pregunta central: ¿cuál de las estructuras resulta más adecuada cuando se pasa de consultar tareas individuales a
+  Pregunta central: ¿cuál de las estructuras resulta más adecuada cuando 
+  se pasa de consultar tareas individuales a
   consultar las relaciones entre una tarea y sus descendientes?
   Contexto particular: herramienta de seguimiento con la que un profesor administra las tareas de un curso.
   Al inicio registra tareas independientes (quices, prácticas) y las consulta por identificador.
-  Luego asigna proyectos que se dividen en entregables y subtareas, y necesita calcular el esfuerzo total y las horas de trabajo pendientes de una tarea a partir de todos sus descendientes.
+  Luego asigna proyectos que se dividen en entregables y subtareas, y necesita calcular el esfuerzo total y 
+  las horas de trabajo pendientes de una tarea a partir de todos sus descendientes.
 
 # Estructuras Seleccionadas
 ```
@@ -97,17 +99,23 @@ Para guardar la salida de consola como evidencia:
 
 ## Procedimiento para reproducir ambas cargas
 
-Una sola ejecución de `prueba` hace las pruebas funcionales y genera y prueba ambas cargas para N = 100, 500 y 1000 tareas, con la semilla 2026 + N (los parametros se cambian al inicio de `prueba.cpp`).
+Una sola ejecución de `prueba` hace las pruebas funcionales y genera y prueba ambas cargas para N = 100, 500 y 1000 tareas,
+con la semilla 2026 + N (los parametros se cambian al inicio de `prueba.cpp`).
 
-- **Pruebas funcionales:** 5 tareas con resultados calculados a mano. Se prueban la insercion de una tarea con padre inexistente, busquedas de la primera, una intermedia, la ultima, una rechazada y una inexistente, y consultas de descendientes de una tarea con dos niveles, una con hijos, una sin subtareas, una completada y una inexistente.
+- **Pruebas funcionales:** 5 tareas con resultados calculados a mano. Se prueban la insercion de una tarea con padre inexistente,
+- busquedas de la primera, una intermedia, la ultima, una rechazada y una inexistente, y consultas de descendientes de una tarea con dos niveles, una con hijos, una sin subtareas, una completada y una inexistente.
 - **Carga base:** N tareas independientes (idPadre = 0). Se ejecutan 200 búsquedas por id; el 10 % son ids que no existen.
-- **Carga modificada:** las mismas N tareas, pero cada una (salvo la primera) tiene un 20 % de probabilidad de ser independiente y si no es subtarea de una tarea anterior elegida al azar. Se ejecutan las mismas 200 búsquedas y 200 consultas de descendientes; el 10 % son ids que no existen.
+- **Carga modificada:** las mismas N tareas, pero cada una (salvo la primera) tiene un 20 % de probabilidad de ser independiente y
+-  si no es subtarea de una tarea anterior elegida al azar. Se ejecutan las mismas 200 búsquedas y
+-  200 consultas de descendientes; el 10 % son ids que no existen.
 - Cada tarea tiene un esfuerzo de 1 a 8 horas, y el 40 % está completada.
-- Las mismas tareas se insertan en el mismo orden en la lista y en el árbol, y ambas reciben las mismas consultas. Los contadores se reinician antes de cada fase y cada resultado se verifica contra el valor esperado.
+- Las mismas tareas se insertan en el mismo orden en la lista y en el árbol, y ambas reciben las mismas consultas.
+-  Los contadores se reinician antes de cada fase y cada resultado se verifica contra el valor esperado.
 
 **Definiciones**
 
-- `ResumenDescendientes(id)`: suma el esfuerzo total y el esfuerzo pendiente (tareas no completadas) de la tarea y de todos sus descendientes, incluyendo la tarea misma, y cuenta cuantas tareas sumo. Retorna false si la tarea no existe.
+- `ResumenDescendientes(id)`: suma el esfuerzo total y el esfuerzo pendiente (tareas no completadas) de la tarea y
+- de todos sus descendientes, incluyendo la tarea misma, y cuenta cuantas tareas sumo. Retorna false si la tarea no existe.
 - **Nodos visitados:** cada nodo que examina la estructura, incluyendo el recorrido de hermanos en el árbol.
 - **Comparaciones:** cada comparación de un id (`id` o `idPadre`) contra el valor buscado.
 
@@ -123,13 +131,16 @@ Una sola ejecución de `prueba` hace las pruebas funcionales y genera y prueba a
 
 *Promedio de nodos visitados por consulta; los demás tamaños están en `resultados.csv`.*
 
-Construir el árbol cuesta más que construir la lista: con N = 1000 en la carga base, el árbol visita 500 500 nodos porque recorre a todos los hermanos para colgar cada tarea al final, mientras que la lista no visita ninguno. En la carga modificada el árbol visita 224 159 nodos y la lista 203 867, porque ambas buscan al padre de cada tarea.
+Construir el árbol cuesta más que construir la lista: con N = 1000 en la carga base, el árbol visita 500 500 nodos 
+porque recorre a todos los hermanos para colgar cada tarea al final, mientras que la lista no visita ninguno.
+En la carga modificada el árbol visita 224 159 nodos y la lista 203 867, porque ambas buscan al padre de cada tarea.
 
 ## Limitaciones conocidas
 
 - Los datos son sintéticos, no provienen de un curso real.
 - Ninguna estructura está ordenada por id, así que ambas buscan con un recorrido.
-- La forma de la carga modificada depende de la probabilidad de 20 % y de elegir el padre al azar; otra forma (por ejemplo ramas más profundas) puede dar otros conteos.
+- La forma de la carga modificada depende de la probabilidad de 20 % y de elegir el padre al azar; otra forma (por ejemplo ramas más profundas)
+-  puede dar otros conteos.
 - Se midió trabajo (contadores), no tiempo ni memoria.
 - Solo se probó con g++, no con BCC 10.2.
 
