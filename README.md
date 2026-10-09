@@ -145,7 +145,7 @@ En la carga modificada el árbol visita 224 159 nodos y la lista 203 867, porque
 - Solo se probó con g++, no con BCC 10.2.
 
 # Declaración de uso de IA
-Herramienta: Gemini
+Herramienta: Gemini y Chat GPT
 Modelo: 4 Argon
 
 1. Finalidad: aclarar conceptos
