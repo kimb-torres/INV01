@@ -95,13 +95,8 @@ Bibliotecas estandar: <ramdon>,<vector>, <map>, <fstream>,
 
 # Instrucciones de Ejecucción
 
-g++ -std=c++11 -Wall pruebas_funcionales.cpp -o pruebas
-.\pruebas
-
-g++ -std=c++11 -Wall main.cpp -o estudio
-mkdir resultados
-cd resultados
-..\estudio
+g++ -std=c++11 -Wall -Wextra -pedantic prueba.cpp -o prueba
+.\prueba
 
 ## Procedimiento para reproducir ambas cargas
 
